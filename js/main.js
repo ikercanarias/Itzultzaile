@@ -63,9 +63,10 @@
         var deferred = new $.Deferred();
         var videoSettings = {
             video: {
-		 "facingMode": 
-            			{ "ideal": "environment" }
-            	},
+		 facingMode: {
+            	      exact: 'environment'
+            	    }
+            	,
                 optional: [
                     {
                         width: { min: pictureWidth }
