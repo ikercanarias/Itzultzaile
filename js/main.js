@@ -63,9 +63,10 @@
         var deferred = new $.Deferred();
         var videoSettings = {
             video: {
-		 facingMode: {
-            	      ideal: 'environment'
-            	    }
+            	facingMode: { 
+            		ideal: 'environment'
+            	   }
+            	
             }
         };
 
@@ -191,7 +192,8 @@
 
         var spinner = $('.spinner');
         spinner.show();
-        $('blockquote p').text('');
+        //$('blockquote p').text('');
+        $("#resultText").val('');
         $('blockquote footer').text('');
 
         // do the OCR!
@@ -200,7 +202,10 @@
 
             //show the result
             spinner.hide();
-            $('blockquote p').html('&bdquo;' + resultText + '&ldquo;');
+            //$('blockquote p').html('&bdquo;' + resultText + '&ldquo;');
+            // Se sustituyen los saltos de linea por espacios en blanco. 
+            resultText = resultText.replace(/(\r\n|\n|\r)/gm, " ");
+            $("#resultText").val(resultText);
             $('blockquote footer').text('(' + resultText.length + ' characters)');
         });
     }
@@ -346,7 +351,11 @@
                     throw_error();
                 } else {
                     if (data["status"] == 3) {
-                        alert(data["message"]);
+                    	//$('blockquote p').text(data["message"]);
+                    	$("#resultText").val(data["message"]);
+                    	var spinner = $('.spinner');
+                    	$("#resultText").prop('disabled', false);
+                    	spinner.hide();
                     }
                 }	
             }, complete: function(data) {
@@ -357,7 +366,12 @@
     }
     
     function doTranslate() {
-
+    	
+    	var spinner = $('.spinner');
+    	spinner.show();
+    	
+    	$("#resultText").prop('disabled', true);
+    	
     	var model = "eu2es";
     	//var model = "es2eu";
     	var model_send = "";
@@ -391,8 +405,8 @@
 	        	user_key_job = data_key["ukey"];
 	        	
 	            // Add new translation job with received user key
-	        	var myText = $('blockquote p').text();
-	        	//alert("Texto a traducir: " + myText);
+	        	//var myText = $('blockquote p').text();
+	        	var myText = $("#resultText").val();
 	            var send = {mkey:masterkey, ukey:user_key_job, text:myText, model:model_send};
 	            $.ajax({
 	                url: "https://cors-anywhere.herokuapp.com/https://"+host+"/job/add",
@@ -417,7 +431,6 @@
 	            alert(errorThrown);
 	        }
 	    });
-
 	}
     $('#adjust').click(function () {
         step3();
@@ -437,9 +450,7 @@
     });
     
     function translate() {
-    	alert("translate " + $('blockquote p').text());
-    	doTranslate();
-    	//alert($("button[data-id='btn_translate']").text());    	
+    	doTranslate();    	
     }
     
     $('.nav').on('click', 'a', function () {
