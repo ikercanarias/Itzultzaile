@@ -66,15 +66,6 @@
 		 facingMode: {
             	      ideal: 'environment'
             	    }
-            	,
-                optional: [
-                    {
-                        width: { min: pictureWidth }
-                    },
-                    {
-                        height: { min: pictureHeight }
-                    }
-                ]
             }
         };
 
