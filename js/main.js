@@ -47,7 +47,7 @@
                 });
 
                 if (rearCameraIds.length) {
-                    deferred.resolve(rearCameraIds[1]);
+                    deferred.resolve(rearCameraIds[0]);
                 } else {
                     deferred.resolve(null);
                 }
@@ -63,6 +63,9 @@
         var deferred = new $.Deferred();
         var videoSettings = {
             video: {
+		 "facingMode": 
+            			{ "ideal": "environment" }
+            	},
                 optional: [
                     {
                         width: { min: pictureWidth }
