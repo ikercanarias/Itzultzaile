@@ -64,7 +64,7 @@
         var videoSettings = {
             video: {
 		 facingMode: {
-            	      exact: 'environment'
+            	      ideal: 'environment'
             	    }
             	,
                 optional: [
