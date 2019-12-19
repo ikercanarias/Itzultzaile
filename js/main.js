@@ -197,7 +197,7 @@
         $('blockquote footer').text('');
 
         // do the OCR!
-        Tesseract.recognize(ctx).then(function (result) {
+        /*Tesseract.recognize(ctx, 'eus').then(function (result) {
             var resultText = result.text ? result.text.trim() : '';
 
             //show the result
@@ -207,8 +207,48 @@
             resultText = resultText.replace(/(\r\n|\n|\r)/gm, " ");
             $("#resultText").val(resultText);
             $('blockquote footer').text('(' + resultText.length + ' characters)');
-        });
+        });*/
+        
+        var GCVUrl = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCexiD4bbvtheXJ1O4-Wb5svJ39A1pnJoE';
+    	var GCVRequest = {
+    		       requests: [{
+    		         image: {
+    		        	 content: canvas.toDataURL('image/jpeg').replace('data:image/jpeg;base64,', '')
+    		       		//must discard `data:image/png;base64,`
+    		         },  
+    		         features: [{type: 'TEXT_DETECTION'}]
+    		       }]
+    	};
+    	$.ajax({
+    		 type: 'POST',
+    		 url: GCVUrl,
+    		 dataType: 'json',
+    		 contentType: 'application/json',
+    		 data: JSON.stringify(GCVRequest),
+    		 success: function (data) {
+    			 var texts;
+    	         if (texts = data.responses[0].textAnnotations) {
+    	           
+    	           var resultText = texts[0].description ? texts[0].description.trim() : '';
+
+    	            //show the result
+    	            spinner.hide();
+    	            //$('blockquote p').html('&bdquo;' + resultText + '&ldquo;');
+    	            // Se sustituyen los saltos de linea por espacios en blanco. 
+    	            resultText = resultText.replace(/(\r\n|\n|\r)/gm, " ");
+    	            $("#resultText").val(resultText);
+    	            $('blockquote footer').text('(' + resultText.length + ' characters)');
+    	            
+    	         } else {
+    	           alert('No text was recognized');
+    	         }
+    	       },
+    	       error: function(jqXhr, textStatus, error) {
+    	         alert('XHR error: ' + jqXhr.responseJSON.error.message);
+    	       }
+    	 });
     }
+    
 
     /*********************************
      * UI Stuff
