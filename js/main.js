@@ -233,6 +233,7 @@
     	            // Se sustituyen los saltos de linea por espacios en blanco. 
     	            resultText = resultText.replace(/(\r\n|\n|\r)/gm, " ");
     	            $("#resultText").val(resultText);
+					expandTextarea('resultText');
     	            
     	         } else {
     	           alert('No se ha podido reconocer ningún texto.');
@@ -488,6 +489,14 @@
     	doTranslate();    	
     }
     
+	function expandTextarea(id) {
+		document.getElementById(id).addEventListener('keyup', function() {
+			this.style.overflow = 'hidden';
+			this.style.height = 0;
+			this.style.height = this.scrollHeight + 'px';
+		}, false);
+	}
+		
     $('.nav').on('click', 'a', function () {
         if (!$(this).parent().is('.disabled')) {
             var step = $(this).data('step');
