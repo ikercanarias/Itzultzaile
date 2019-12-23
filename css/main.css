@@ -5,6 +5,10 @@ body {
     padding-bottom: 10px;
 }
 
+#resultText {
+    resize: vertical;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
 .header, .marketing, .footer {
@@ -58,6 +62,7 @@ body {
 .jumbotron h1 {
  	margin-top: 1px;
     margin-bottom: 1px;
+	font-size: 50px;
 }
 
 .jumbotron .btn {
