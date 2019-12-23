@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>JavaScript OCR demo</title>
+<title>Itzultzaile</title>
 
 <meta name="Description" content="Optical Character Recognition demo in JavaScript" />
 <meta property="og:image" content="http://kdzwinel.github.io/JS-OCR-demo/img/process.png" />
@@ -30,7 +30,7 @@
 				</h1>
 
 				<p class="lead">
-					Saca una foto de un texto. <i class="glyphicon glyphicon-question-sign help" data-placement="bottom" data-content="<img src='img/step1.png' />" data-html="true"></i>
+					<i class="glyphicon glyphicon-question-sign help" data-placement="bottom" data-content="<img src='img/step1.png' />" data-html="true"></i> Saca una foto de un texto.
 				</p>
 
 				<figure class="not-ready">
@@ -41,11 +41,12 @@
 			</div>
 			<div id="step2">
 				<h1>
-					<i class="glyphicon glyphicon-pencil"></i>
+					<i class="glyphicon glyphicon-retweet"></i>
 				</h1>
 
 				<p class="lead">
-					Recorta la foto y ajusta el recorte para que el texto quede lo más visible posible. <i class="glyphicon glyphicon-question-sign help" data-placement="bottom" data-content="<img src='img/step2.png' />" data-html="true"></i>
+					<i class="glyphicon glyphicon-question-sign help" data-placement="bottom" data-content="<img src='img/step2.png' />" data-html="true"></i> 
+					Selecciona el texto de la foto. Ajusta el brillo y el contraste para que el texto quede lo más visible posible.
 				</p>
 
 				<figure>
@@ -61,11 +62,11 @@
 					Contraste: <input type="range" min="0" max="100" id="contrast" value="90">
 				</p>
 
-				<button class="btn btn-lg btn-success" id="adjust" disabled>Done</button>
+				<button class="btn btn-lg btn-success" id="adjust" disabled>Hecho</button>
 			</div>
 			<div id="step3">
 				<h1>
-					<i class="glyphicon glyphicon-text-height"></i>
+					<i class="glyphicon glyphicon-check"></i>
 				</h1>
 
 				<p class="lead">Aquí encontrarás el texto reconocido.</p>
@@ -74,16 +75,14 @@
 					<canvas></canvas>
 				</figure>
 
-				<blockquote>
-					<div class="spinner">
-						<div class="bounce1"></div>
-						<div class="bounce2"></div>
-						<div class="bounce3"></div>
-					</div>
-					<textarea id="resultText" rows="4" style="width:100%;"></textarea>
-					<p id="result"></p>
-					<footer></footer>
-				</blockquote>
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+				<div class="form-group shadow-textarea">
+					<textarea id="resultText" style="width:100%;" rows="4" class="form-control z-depth-2" id="exampleFormControlTextarea6" placeholder="Reconociendo texto..."></textarea>
+				</div>
 
 				<button class="btn btn-lg btn-default" id="go-back">Volver</button>
 				<button class="btn btn-lg btn-default" id="start-over">Empezar de nuevo</button>
@@ -107,7 +106,6 @@
 	<script src="js/vendor/modernizr.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/vendor/jquery.Jcrop.js"></script>
-	<script src='https://cdn.jsdelivr.net/gh/naptha/tesseract.js@v1.0.14/dist/tesseract.min.js'></script>
 	<script src="js/vendor/glfx.min.js"></script>
 
 	<script src="js/main.js"></script>
