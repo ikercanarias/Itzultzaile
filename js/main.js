@@ -488,15 +488,7 @@
     function translate() {
     	doTranslate();    	
     }
-    
-	function expandTextarea(id) {
-		document.getElementById(id).addEventListener('keyup', function() {
-			this.style.overflow = 'hidden';
-			this.style.height = 0;
-			this.style.height = this.scrollHeight + 'px';
-		}, false);
-	}
-		
+    	
     $('.nav').on('click', 'a', function () {
         if (!$(this).parent().is('.disabled')) {
             var step = $(this).data('step');
