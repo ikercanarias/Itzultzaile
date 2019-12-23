@@ -85,8 +85,8 @@
 				</div>
 
 				<button class="btn btn-lg btn-default" id="go-back">Volver</button>
-				<button class="btn btn-lg btn-default" id="start-over">Empezar de nuevo</button>
-				<button class="btn btn-lg btn-default" id="translate">Traducir</button>
+				<button class="btn btn-lg btn-default" id="start-over">Inicio</button>
+				<button class="btn btn-lg btn-success" id="translate">Traducir</button>
 			</div>
 		</div>
 
@@ -109,6 +109,18 @@
 	<script src="js/vendor/glfx.min.js"></script>
 
 	<script src="js/main.js"></script>
+	
+	<script>
+		function expandTextarea(id) {
+			document.getElementById(id).addEventListener('keyup', function() {
+				this.style.overflow = 'hidden';
+				this.style.height = 0;
+				this.style.height = this.scrollHeight + 'px';
+			}, false);
+		}
+
+		expandTextarea('resultText');
+	</script>
 
 </body>
 </html>
