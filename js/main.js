@@ -192,9 +192,7 @@
 
         var spinner = $('.spinner');
         spinner.show();
-        //$('blockquote p').text('');
         $("#resultText").val('');
-        $('blockquote footer').text('');
 
         // do the OCR!
         /*Tesseract.recognize(ctx, 'eus').then(function (result) {
@@ -214,7 +212,6 @@
     		       requests: [{
     		         image: {
     		        	 content: canvas.toDataURL('image/jpeg').replace('data:image/jpeg;base64,', '')
-    		       		//must discard `data:image/png;base64,`
     		         },  
     		         features: [{type: 'TEXT_DETECTION'}]
     		       }]
@@ -228,23 +225,23 @@
     		 success: function (data) {
     			 var texts;
     	         if (texts = data.responses[0].textAnnotations) {
-    	           
-    	           var resultText = texts[0].description ? texts[0].description.trim() : '';
+					
+					var resultText = texts[0].description ? texts[0].description.trim() : '';
 
     	            //show the result
     	            spinner.hide();
-    	            //$('blockquote p').html('&bdquo;' + resultText + '&ldquo;');
     	            // Se sustituyen los saltos de linea por espacios en blanco. 
     	            resultText = resultText.replace(/(\r\n|\n|\r)/gm, " ");
     	            $("#resultText").val(resultText);
-    	            $('blockquote footer').text('(' + resultText.length + ' characters)');
     	            
     	         } else {
-    	           alert('No text was recognized');
+    	           alert('No se ha podido reconocer ningún texto.');
+				   changeStep(1);
     	         }
     	       },
     	       error: function(jqXhr, textStatus, error) {
-    	         alert('XHR error: ' + jqXhr.responseJSON.error.message);
+					alert('XHR error: ' + jqXhr.responseJSON.error.message);
+					changeStep(1);
     	       }
     	 });
     }
@@ -391,7 +388,6 @@
                     throw_error();
                 } else {
                     if (data["status"] == 3) {
-                    	//$('blockquote p').text(data["message"]);
                     	$("#resultText").val(data["message"]);
                     	var spinner = $('.spinner');
                     	$("#resultText").prop('disabled', false);
@@ -445,7 +441,6 @@
 	        	user_key_job = data_key["ukey"];
 	        	
 	            // Add new translation job with received user key
-	        	//var myText = $('blockquote p').text();
 	        	var myText = $("#resultText").val();
 	            var send = {mkey:masterkey, ukey:user_key_job, text:myText, model:model_send};
 	            $.ajax({
