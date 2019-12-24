@@ -17,6 +17,6 @@
       Iker Canarias
   </author>
 
-  <plugin name="cordova-plugin-camera" spec="1.2.0" source="pgb" />
+  <plugin name="cordova-plugin-camera" spec="~4.1.0" />
 
 </widget>
