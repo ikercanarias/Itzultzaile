@@ -152,6 +152,10 @@ body.step3 #step1, body.step3 #step2 {
     width: 272px;
 }
 
+.jcrop-holder {
+    margin: auto;
+}
+
 .popover img {
     width: 100%;
 }
