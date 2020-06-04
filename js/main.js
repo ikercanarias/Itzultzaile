@@ -207,7 +207,7 @@
             $('blockquote footer').text('(' + resultText.length + ' characters)');
         });*/
         
-        var GCVUrl = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCexiD4bbvtheXJ1O4-Wb5svJ39A1pnJoE';
+        var GCVUrl = 'https://vision.googleapis.com/v1/images:annotate?key=XXXXXXXXXXXXXXXXXXXXXXXX';
     	var GCVRequest = {
     		       requests: [{
     		         image: {
